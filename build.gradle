@@ -1,0 +1,80 @@
+
+plugins {
+    id 'java'
+}
+
+group 'prgradle2'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+
+dependencies {
+    testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
+}
+
+/*
+test {
+    useTestNG()
+}
+*/
+task testNG2(type: Test) {
+    dependsOn(compileJava)
+    scanForTestClasses = true
+
+    failFast = false
+    ignoreFailures = false
+    reports.html.enabled = true
+    def groups = System.getProperty('groups', '')
+    useTestNG(){
+
+        options {
+            options.suites 'suite.xml'
+            options.suiteName 'TestNG Tests'
+            options.testName = 'moje'
+            options.parallel = 'methods'
+            options.threadCount = 2
+            options.preserveOrder = true
+            options.includeGroups(groups)
+            options.useDefaultListeners = true
+            options.outputDirectory = file('testngReports')
+        }
+
+    }
+}
+
+task testNG(type: Test) {
+    dependsOn(clean)
+    scanForTestClasses = false
+
+    failFast = false
+    ignoreFailures = false
+    reports.html.enabled = true
+
+    def groups = System.getProperty('groups', '')
+    useTestNG() {
+        options {
+            options.suiteName 'TestNG Tests'
+            options.testName = 'Rest Tests'
+            options.parallel = 'methods'
+            options.threadCount = 2
+            options.preserveOrder = true
+            options.includeGroups(groups)
+            options.useDefaultListeners = true
+            options.outputDirectory = file('testngReports')
+        }
+    }
+}
+
+/*
+task runAllTests {
+    println 'now I am checking if all tests are passing, in theory'
+}
+
+task buildJar(dependsOn: runAllTests) {
+    println 'now I am building JAR file, in theory'
+}*/
