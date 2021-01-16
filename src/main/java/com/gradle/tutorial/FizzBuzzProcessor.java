@@ -17,7 +17,7 @@ public class FizzBuzzProcessor {
         if (fizzBuzz % 5 == 0) {
             return "Buzz";
         }
-
+        System.out.println("test");
         return String.valueOf(fizzBuzz);
     }
 }
