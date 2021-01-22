@@ -34,7 +34,7 @@ task testNG2(type: Test) {
 
         options {
             options.suites 'suite.xml'
-            options.suiteName 'TestNG Tests'
+            options.suiteName 'TestNG Tests1'
             options.testName = 'moje'
             options.parallel = 'methods'
             options.threadCount = 2
