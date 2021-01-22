@@ -9,7 +9,7 @@ public class FizzBuzzProcessorTest {
     public void FizzBuzzNormalNumbers() {
         System.out.println("test12345");
         FizzBuzzProcessor fb = new FizzBuzzProcessor();
-        assertEquals("11", fb.convert(1));
+        assertEquals("1", fb.convert(1));
         assertEquals("2", fb.convert(2));
     }
 
