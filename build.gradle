@@ -23,6 +23,7 @@ test {
 }
 */
 task testNG2(type: Test) {
+    dependsOn(clean)
     dependsOn(compileJava)
     scanForTestClasses = true
 
